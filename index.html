@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Backup Email</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: linear-gradient(135deg, #2980b9 0%, #6dd5fa 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: rgba(255,255,255,0.97);
+            padding: 2.5rem 2rem 2rem 2rem;
+            border-radius: 22px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+            max-width: 370px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .icon-mail {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
+        .icon-mail svg {
+            width: 54px;
+            height: 54px;
+            fill: #2980b9;
+            filter: drop-shadow(0 2px 8px #6dd5fa88);
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9;
+            margin-bottom: 1.2rem;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.7rem;
+            color: #333;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        input[type="email"],
+        input[type="password"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 0.2rem;
+            margin-bottom: 1.1rem;
+            border: 1.5px solid #b2bec3;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: #f7faff;
+            transition: border 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 2px #e3eaf1;
+        }
+        input:focus, select:focus {
+            border: 1.5px solid #2980b9;
+            outline: none;
+            box-shadow: 0 0 0 2px #6dd5fa55;
+        }
+        button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(90deg, #2980b9, #6dd5fa);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 8px #6dd5fa55;
+            transition: background 0.2s, transform 0.1s;
+        }
+        button:hover {
+            background: linear-gradient(90deg, #2574a9, #48b1f3);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #7f8c8d;
+            font-size: 0.98rem;
+        }
+        @media (max-width: 500px) {
+            .container {
+                padding: 1.2rem 0.5rem 1.5rem 0.5rem;
+                max-width: 98vw;
+            }
+            h1 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <script>
+        function setImapServer(sel) {
+            var imapInput = document.getElementById('imap_server');
+            switch(sel.value) {
+                case 'gmail':
+                    imapInput.value = 'imap.gmail.com';
+                    imapInput.readOnly = true;
+                    break;
+                case 'outlook':
+                    imapInput.value = 'outlook.office365.com';
+                    imapInput.readOnly = true;
+                    break;
+                case 'yahoo':
+                    imapInput.value = 'imap.mail.yahoo.com';
+                    imapInput.readOnly = true;
+                    break;
+                case 'altro':
+                    imapInput.value = '';
+                    imapInput.readOnly = false;
+                    imapInput.focus();
+                    break;
+            }
+        }
+        window.onload = function() {
+            setImapServer(document.getElementById('provider'));
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-mail">
+            <svg viewBox="0 0 64 64"><path d="M8 16c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h48c2.2 0 4-1.8 4-4V20c0-2.2-1.8-4-4-4H8zm0 4h48v2.5L32 38 8 22.5V20zm0 6.3l23.1 15.4c.6.4 1.3.4 1.9 0L56 26.3V44c0 .6-.4 1-1 1H9c-.6 0-1-.4-1-1V26.3z"/></svg>
+        </div>
+        <h1>Backup Email</h1>
+        <form method="POST" action="/backup">
+            <label>Provider:
+                <select name="provider" id="provider" onchange="setImapServer(this)">
+                    <option value="gmail">Gmail</option>
+                    <option value="outlook">Outlook</option>
+                    <option value="yahoo">Yahoo</option>
+                    <option value="altro">Altro...</option>
+                </select>
+            </label>
+            <label>Email:
+                <input type="email" name="email" required autocomplete="username">
+            </label>
+            <label>Password:
+                <input type="password" name="password" required autocomplete="current-password">
+            </label>
+            <label>Server IMAP:
+                <input type="text" id="imap_server" name="imap_server" required>
+            </label>
+            <button type="submit">Scarica Backup</button>
+        </form>
+        <div class="footer">&copy; 2024 Backup Email | Creato con ❤️</div>
+    </div>
+</body>
+</html> 
