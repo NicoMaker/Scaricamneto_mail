@@ -1,15 +1,14 @@
-
 body {
   min-height: 100vh;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   background: linear-gradient(135deg, #2980b9 0%, #6dd5fa 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .container {
-  background: rgba(255,255,255,0.97);
+  background: rgba(255, 255, 255, 0.97);
   padding: 2.5rem 2rem;
   border-radius: 22px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
@@ -41,7 +40,8 @@ label {
   font-weight: 500;
   font-size: 1.05rem;
 }
-input, select {
+input,
+select {
   width: 100%;
   padding: 0.8rem;
   margin-top: 0.2rem;
@@ -53,7 +53,8 @@ input, select {
   box-shadow: 0 1px 2px #e3eaf1;
   transition: all 0.2s;
 }
-input:focus, select:focus {
+input:focus,
+select:focus {
   border-color: #2980b9;
   box-shadow: 0 0 0 2px #6dd5fa55;
   outline: none;
@@ -69,7 +70,9 @@ button {
   border-radius: 8px;
   box-shadow: 0 2px 8px #6dd5fa55;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
+  transition:
+    background 0.2s,
+    transform 0.1s;
 }
 button:hover {
   background: linear-gradient(90deg, #2574a9, #48b1f3);
