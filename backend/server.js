@@ -107,9 +107,9 @@ const server = http.createServer((req, res) => {
   };
 
   if (req.method === "GET" && req.url === "/") {
-    serveStatic(path.join(__dirname, "public", "index.html"));
+    serveStatic(path.join(__dirname, "../frontend", "index.html"));
   } else if (req.method === "GET") {
-    const filePath = path.join(__dirname, "public", req.url);
+    const filePath = path.join(__dirname, "../frontend", req.url);
     fs.exists(filePath, (exists) => {
       if (exists) {
         serveStatic(filePath);
